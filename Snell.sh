@@ -172,7 +172,8 @@ listen = ::0:${RANDOM_PORT}
 psk = ${RANDOM_PSK}
 ipv6 = false
 tfo = true
-dns = 1.1.1.1, 8.8.8.8
+dns-server = 1.1.1.1,8.8.8.8
+encrypted-dns-server = https://dns.cloudflare.com/dns-query, https://dns.google/dns-query, quic://dns.adguard-dns.com
 EOF
 
     # 创建 Systemd 服务文件
