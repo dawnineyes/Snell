@@ -170,10 +170,9 @@ install_snell() {
 [snell-server]
 listen = ::0:${RANDOM_PORT}
 psk = ${RANDOM_PSK}
-ipv6 = false
+ipv6 = true
 tfo = true
-dns-server = 1.1.1.1,8.8.8.8
-encrypted-dns-server = https://dns.cloudflare.com/dns-query, https://dns.google/dns-query, quic://dns.adguard-dns.com
+dns = 1.1.1.1,8.8.8.8
 EOF
 
     # 创建 Systemd 服务文件
