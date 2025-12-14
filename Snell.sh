@@ -168,11 +168,11 @@ install_snell() {
     # 创建配置文件
     cat > ${CONF_FILE} << EOF
 [snell-server]
-listen = ::0:${RANDOM_PORT}
+listen = [::]:${RANDOM_PORT}
 psk = ${RANDOM_PSK}
 ipv6 = true
 tfo = true
-dns = 1.1.1.1,8.8.8.8
+dns = 127.0.0.1
 EOF
 
     # 创建 Systemd 服务文件
@@ -183,8 +183,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=snell
-Group=snell
+User=root
+Group=root
 ExecStart=${INSTALL_DIR}/snell-server -c ${CONF_FILE}
 AmbientCapabilities=CAP_NET_BIND_SERVICE CAP_NET_ADMIN CAP_NET_RAW
 CapabilityBoundingSet=CAP_NET_BIND_SERVICE CAP_NET_ADMIN CAP_NET_RAW
