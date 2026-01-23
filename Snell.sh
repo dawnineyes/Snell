@@ -117,7 +117,7 @@ install_snell() {
 
     # 下载 Snell 服务器文件
     ARCH=$(arch)
-    VERSION="v5.0.0"
+    VERSION="v5.0.1"
     SNELL_URL=""
     INSTALL_DIR="/usr/local/bin"
     SYSTEMD_SERVICE_FILE="/lib/systemd/system/snell.service"
@@ -168,9 +168,11 @@ install_snell() {
     # 创建配置文件
     cat > ${CONF_FILE} << EOF
 [snell-server]
-listen = ::0:${RANDOM_PORT}
+listen = [::]:${RANDOM_PORT}
 psk = ${RANDOM_PSK}
 ipv6 = true
+tfo = true
+dns = 127.0.0.53
 EOF
 
     # 创建 Systemd 服务文件
@@ -181,8 +183,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=snell
-Group=snell
+User=root
+Group=root
 ExecStart=${INSTALL_DIR}/snell-server -c ${CONF_FILE}
 AmbientCapabilities=CAP_NET_BIND_SERVICE CAP_NET_ADMIN CAP_NET_RAW
 CapabilityBoundingSet=CAP_NET_BIND_SERVICE CAP_NET_ADMIN CAP_NET_RAW
@@ -268,7 +270,7 @@ update_snell() {
 
     # 下载 Snell 服务器文件
     ARCH=$(arch)
-    VERSION="v5.0.0"
+    VERSION="v5.0.1"
     SNELL_URL=""
 
     if [[ ${ARCH} == "aarch64" ]]; then

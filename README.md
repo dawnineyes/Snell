@@ -1,12 +1,7 @@
-## 终端预览
-
-![preview](image.png)
-
-
 ## 一键脚本
 
 ```
-bash <(curl -fsSL snell-ten.vercel.app)
+bash <(curl -fsSL https://github.com/dawnineyes/Snell/raw/refs/heads/main/Snell.sh)
 ```
 
 ## 详细说明
